@@ -27,3 +27,8 @@ abbr -a scan 'nmap -sC -sV -T4 -oA nmap/initial'
 
 # zoxide
 zoxide init fish --cmd cd | source
+
+# fastfetch
+if status is-interactive
+	fastfetch
+end
