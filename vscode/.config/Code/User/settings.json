@@ -1,0 +1,27 @@
+{
+    // Das Wichtigste: Das Gruvbox Theme (musst du gleich noch als Erweiterung laden)
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    
+    // UI auf das Nötigste reduzieren
+    "workbench.startupEditor": "none",
+    "workbench.activityBar.location": "hidden",
+    "workbench.statusBar.visible": false,
+    "workbench.layoutControl.enabled": false,
+    
+    // Die hässliche obere Fensterleiste verstecken (Hyprland macht eh den Rahmen!)
+    "window.titleBarStyle": "custom",
+    
+    // Editor clean halten
+    "editor.minimap.enabled": false,
+    "editor.scrollbar.vertical": "hidden",
+    "editor.scrollbar.horizontal": "hidden",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorBlinking": "smooth",
+    
+    // Font (Falls du eine Nerd Font installiert hast, trag sie hier ein!)
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', 'FiraCode Nerd Font', monospace",
+    "editor.fontLigatures": true,
+    
+    // Wayland-Support (damit es unter Hyprland nicht unscharf wird)
+    "window.titleBarStyle": "custom"
+}
