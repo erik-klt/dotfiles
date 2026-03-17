@@ -1,8 +1,22 @@
-# Eine minimalistische, schnelle Konfiguration
-format = """$directory$git_branch$git_status$character"""
+format = """
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$lua\
+$python\
+$nodejs\
+$aws\
+$docker_context\
+$line_break\
+$character"""
+
+[fill]
+symbol = ' '
 
 [directory]
 style = "bold #d4a373" # Sand-Gold Farbe
+format = "[󰉋 $path ]($style)"
 truncation_length = 3
 fish_style_pwd_dir_length = 1
 
@@ -15,3 +29,24 @@ style = "bold #bc6c25" # Dunkleres Braun für Git
 
 [git_status]
 style = "bold #dda15e"
+
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "dimmed #d4a373"
+format = "[ $time]($style)"
+
+[python]
+symbol = " "
+style = "bold #f4a261"
+format = '[$symbol$version ]($style)'
+
+[nodejs]
+symbol = " "
+style = "bold #d4a373"
+format = '[$symbol$version ]($style)'
+
+[lua]
+symbol = " "
+style = "bold #bc6c25"
+format = '[$symbol$version ]($style)'
