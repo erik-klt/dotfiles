@@ -22,3 +22,8 @@ abbr -a hyprconf 'nano ~/.config/hypr/hyprland.conf'
 abbr -a fishconf 'nano ~/.config/fish/config.fish'
 abbr -a reload 'source ~/.config/fish/config.fish'
 
+# nmap
+abbr -a scan 'nmap -sC -sV -T4 -oA nmap/initial'
+
+# zoxide
+zoxide init fish --cmd cd | source
