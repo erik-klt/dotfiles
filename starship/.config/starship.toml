@@ -1,0 +1,17 @@
+# Eine minimalistische, schnelle Konfiguration
+format = """$directory$git_branch$git_status$character"""
+
+[directory]
+style = "bold #d4a373" # Sand-Gold Farbe
+truncation_length = 3
+fish_style_pwd_dir_length = 1
+
+[character]
+success_symbol = "[❯](bold #f4a261)" # Orange-Gold
+
+[git_branch]
+symbol = " "
+style = "bold #bc6c25" # Dunkleres Braun für Git
+
+[git_status]
+style = "bold #dda15e"
