@@ -1,0 +1,9 @@
+-- Zeigt an, welche Module geladen sind, aber in einem cleanen Format
+:set prompt "\ESC[1;33mλ> \ESC[m"
+:set prompt-cont "\ESC[1;33m | \ESC[m"
+
+-- Aktiviert mehrzeilige Eingaben im Terminal
+:set +m
+
+-- Eine kleine Begrüßungsnachricht beim Start
+:def! hello \_ -> return "putStrLn \"Willkommen in der Gruvbox Haskell-Umgebung!\""
