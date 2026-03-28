@@ -152,6 +152,10 @@ binds {
     Mod+F repeat=false { maximize-column; }
     Mod+Shift+F repeat=false { fullscreen-window; }
 
+    // Rofi
+    Mod+D { spawn "rofi" "-show" "drun"; }
+    Mod+0 { spawn "/home/erik/.config/niri/scripts/powermenu.sh"; }
+
     // Noctalia 
     Mod+Space { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
    
