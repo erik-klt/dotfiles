@@ -1,11 +1,19 @@
 configuration {
-    modi: "drun";
+    modi: "run,drun,window";
+    icon-theme: "Oranchelo";
     show-icons: true;
-    display-drun: "🔍";
-    drun-display-format: "{name}";
+    terminal: "kitty";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "   Apps ";
+    display-run: "   Run ";
+    display-window: " 󰕰  Window ";
+    sidebar-mode: true;
 }
 
-@import "~/.cache/wal/colors-rofi-dark"
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
 
 window {
     width: 35%;
@@ -60,3 +68,4 @@ element selected {
 element-icon {
     size: 24px;
 }
+

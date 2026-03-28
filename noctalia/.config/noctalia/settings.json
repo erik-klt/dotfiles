@@ -438,7 +438,7 @@
         "enableKeyboardLayoutToast": true,
         "enableMarkdown": false,
         "enableMediaToast": false,
-        "enabled": false,
+        "enabled": true,
         "location": "top_right",
         "lowUrgencyDuration": 1,
         "monitors": [
