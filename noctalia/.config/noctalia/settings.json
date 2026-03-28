@@ -396,7 +396,7 @@
         "firstDayOfWeek": -1,
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
-        "name": "Frankfurt",
+        "name": "gießen",
         "showCalendarEvents": true,
         "showCalendarWeather": true,
         "showWeekNumberInCalendar": false,
@@ -438,7 +438,7 @@
         "enableKeyboardLayoutToast": true,
         "enableMarkdown": false,
         "enableMediaToast": false,
-        "enabled": true,
+        "enabled": false,
         "location": "top_right",
         "lowUrgencyDuration": 1,
         "monitors": [
@@ -577,9 +577,9 @@
     },
     "ui": {
         "boxBorderEnabled": false,
-        "fontDefault": "MesloLGS Nerd Font Mono",
+        "fontDefault": "Maple Mono",
         "fontDefaultScale": 1,
-        "fontFixed": "MesloLGS Nerd Font Mono",
+        "fontFixed": "Maple Mono",
         "fontFixedScale": 1,
         "panelBackgroundOpacity": 0.93,
         "panelsAttachedToBar": true,
@@ -600,9 +600,14 @@
         "fillMode": "crop",
         "hideWallpaperFilenames": false,
         "monitorDirectories": [
+            {
+                "directory": "/home/erik/Pictures/Wallpapers",
+                "name": "eDP-1",
+                "wallpaper": ""
+            }
         ],
         "overviewBlur": 0.4,
-        "overviewEnabled": false,
+        "overviewEnabled": true,
         "overviewTint": 0.6,
         "panelPosition": "follow_bar",
         "randomIntervalSec": 300,

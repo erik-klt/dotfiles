@@ -15,17 +15,17 @@ $character"""
 symbol = ' '
 
 [directory]
-style = "bold #d4a373" # Sand-Gold Farbe
-format = "[󰉋 $path ]($style)"
+style = "bold #d4a373" 
+format = "[ $path ]($style)"
 truncation_length = 3
 fish_style_pwd_dir_length = 1
 
 [character]
-success_symbol = "[❯](bold #f4a261)" # Orange-Gold
+success_symbol = "[❯](bold #f4a261)"
 
 [git_branch]
 symbol = " "
-style = "bold #bc6c25" # Dunkleres Braun für Git
+style = "bold #bc6c25"
 
 [git_status]
 style = "bold #dda15e"

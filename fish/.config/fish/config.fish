@@ -18,6 +18,7 @@ abbr -a rm 'rm -i'
 # Hyprland Config schnell öffnen
 abbr -a hyprconf 'nano ~/.config/hypr/hyprland.conf'
 abbr -a niriconf 'nano ~/dotfiles/niri/.config/niri/config.kdl'
+abbr -a kittyconf 'nano ~/.config/kitty/kitty.conf' 
 
 # Fish Config schnell öffnen & laden
 abbr -a fishconf 'nano ~/.config/fish/config.fish'
