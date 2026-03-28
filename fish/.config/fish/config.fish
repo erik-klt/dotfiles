@@ -17,10 +17,15 @@ abbr -a rm 'rm -i'
 
 # Hyprland Config schnell öffnen
 abbr -a hyprconf 'nano ~/.config/hypr/hyprland.conf'
+abbr -a niriconf 'nano ~/dotfiles/niri/.config/niri/config.kdl'
 
 # Fish Config schnell öffnen & laden
 abbr -a fishconf 'nano ~/.config/fish/config.fish'
 abbr -a reload 'source ~/.config/fish/config.fish'
+
+# fd
+abbr -a f fd
+abbr -a fa 'fd -IH'
 
 # nmap
 abbr -a scan 'nmap -sC -sV -T4 -oA nmap/initial'
