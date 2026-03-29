@@ -16,7 +16,7 @@ symbol = ' '
 
 [directory]
 style = "bold #d4a373" 
-format = "[ $path ]($style)"
+format = "[󱕅 $path ]($style)"
 truncation_length = 3
 fish_style_pwd_dir_length = 1
 

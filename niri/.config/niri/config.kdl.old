@@ -1,0 +1,209 @@
+input {
+    workspace-auto-back-and-forth
+    hot-corners false
+    keyboard {
+        repeat-delay 200
+        repeat-rate 25
+    }
+
+    touchpad {
+        tap
+        dwt
+        drag false
+        natural-scroll
+        scroll-method "two-finger"
+        click-method "clickfinger"
+    }
+}
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+spawn-at-startup "awww-daemon"
+spawn-at-startup "hypridle"
+spawn-at-startup "awww" "~/Pictures/Wallpapers/sands.jpg"
+spawn-at-startup "quickshell" "--path" "/home/erik/.config/quickshell/bar.qml"
+
+environment {
+  CLUTTER_BACKEND "wayland"
+  GDK_BACKEND "wayland,x11,*"
+  GDK_DPI_SCALE "1"
+  GDK_SCALE "1"
+  QT_AUTO_SCREEN_SCALE_FACTOR "1"
+  QT_QPA_PLATFORM "wayland;xcb"
+  QT_QPA_PLATFORMTHEME "qt6ct"
+  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+  SDL_VIDEODRIVER "wayland"
+  GSK_RENDERER "ngl"
+  ELECTRON_OZONE_PLATFORM_HINT "auto"
+  WLR_NO_HARDWARE_CURSORS "1"
+  // Force vaapi backend to prevent using the dGPU
+  QT_MEDIA_BACKEND "ffmpeg"
+  QT_FFMPEG_DECODING_HW_DEVICE_TYPES "vaapi"
+  QT_FFMPEG_ENCODING_HW_DEVICE_TYPES "vaapi"
+}
+
+cursor {
+    xcursor-theme "Adwaita"
+    xcursor-size 24
+    hide-when-typing
+    hide-after-inactive-ms 10000
+}
+
+output "eDP-1" {
+    mode "2880x1800@120"
+    scale 1.85
+}
+
+debug {
+    render-drm-device "/dev/dri/by-path/pci-0000:65:00.0-render" // iGPU (AMD)
+    // ignore-drm-device "/dev/dri/renderD129"
+    // ignore-drm-device "/dev/dri/card0"
+    honor-xdg-activation-with-invalid-serial
+}
+
+layout {
+    gaps 16
+    center-focused-column "never"
+    background-color "000000"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        width 4
+        inactive-color "#ffffff00"
+        active-gradient from="#d4a373" to="#fcefb4" angle=45 relative-to="workspace-view"
+    }
+
+    border {
+        off
+    }
+
+shadow {
+        on
+        draw-behind-window false
+        softness 40
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+}
+
+prefer-no-csd
+
+layer-rule {
+  match namespace="^noctalia-overview*"
+  place-within-backdrop true
+}
+
+window-rule {
+  // Rounded corners for a modern look.
+  geometry-corner-radius 20
+
+  // Clips window contents to the rounded corner boundaries.
+  clip-to-geometry true
+}
+
+clipboard {
+    disable-primary
+}
+
+config-notification {
+    disable-failed
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="zen" title="^Picture-in-Picture$"
+    open-floating true
+    open-focused false
+    default-floating-position x=32 y=32 relative-to="bottom-right"
+    default-column-width { proportion 0.3; }
+    default-window-height { proportion 0.3; }
+}
+
+window-rule {
+    match app-id="kitty"
+    open-maximized true
+    draw-border-with-background false
+}
+
+window-rule {
+    match app-id="firefox"
+    open-maximized true
+}
+
+binds {
+    Mod+Return { spawn "kitty"; }
+    Mod+R {spawn "firefox"; }
+    Mod+Shift+L {spawn "hyprlock";}
+
+    Mod+O repeat=false { toggle-overview; }
+    Mod+C repeat=false { close-window; }
+    Mod+F repeat=false { maximize-column; }
+    Mod+Shift+F repeat=false { fullscreen-window; }
+
+    // Rofi
+    Mod+D { spawn "rofi" "-show" "drun"; }
+    Mod+0 { spawn "/home/erik/.config/niri/scripts/powermenu.sh"; }
+
+    // Noctalia 
+    Mod+Space { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+   
+    // Audio & Brightness
+    XF86AudioRaiseVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    XF86AudioLowerVolume { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    XF86AudioMute { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+    XF86MonBrightnessUp { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    XF86MonBrightnessDown { spawn "qs" "-c" "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+
+    Mod+H     { focus-column-left; }
+    Mod+J     { focus-window-or-workspace-down; }
+    Mod+K     { focus-window-or-workspace-up; }
+    Mod+L     { focus-column-right; }
+    
+    Mod+F1 { spawn "/home/erik/.config/niri/themes/sands.sh"; }
+    Mod+F2 { spawn "/home/erik/.config/niri/themes/dark.sh"; }
+
+    Print { screenshot; }    
+  
+    Mod+Alt+H     { move-column-left; }
+    Mod+Alt+J     { move-window-down-or-to-workspace-down; }
+    Mod+Alt+K     { move-window-up-or-to-workspace-up; }
+    Mod+Alt+L     { move-column-right; }
+
+    Mod+Left       { focus-column-first; }
+    Mod+Right      { focus-column-last; }
+    Mod+Alt+Left   { move-column-to-first; }
+    Mod+Alt+Right  { move-column-to-last; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Alt+1 { move-column-to-workspace 1; }
+    Mod+Alt+2 { move-column-to-workspace 2; }
+    Mod+Alt+3 { move-column-to-workspace 3; }
+    Mod+Alt+4 { move-column-to-workspace 4; }
+    Mod+Alt+5 { move-column-to-workspace 5; }
+    Mod+Alt+6 { move-column-to-workspace 6; }
+    Mod+Alt+7 { move-column-to-workspace 7; }
+    Mod+Alt+8 { move-column-to-workspace 8; }
+    Mod+Alt+9 { move-column-to-workspace 9; }
+
+}
