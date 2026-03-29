@@ -18,10 +18,9 @@ input {
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 spawn-at-startup "awww-daemon"
-spawn-at-startup "quickshell"
 spawn-at-startup "hypridle"
 spawn-at-startup "awww" "~/Pictures/Wallpapers/sands.jpg"
-spawn-at-startup "qs" "-c" "noctalia-shell"
+spawn-at-startup "quickshell" "--path" "/home/erik/.config/quickshell/bar.qml"
 
 environment {
   CLUTTER_BACKEND "wayland"

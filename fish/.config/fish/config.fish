@@ -24,6 +24,8 @@ abbr -a kittyconf 'nano ~/.config/kitty/kitty.conf'
 abbr -a fishconf 'nano ~/.config/fish/config.fish'
 abbr -a reload 'source ~/.config/fish/config.fish'
 
+abbr -a l 'ls'
+
 # fd
 abbr -a f fd
 abbr -a fa 'fd -IH'
