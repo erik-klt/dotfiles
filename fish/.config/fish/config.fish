@@ -1,11 +1,6 @@
 # Remove the default Fish welcome message
 set -g fish_greeting
 
-# Load Pywal colors for your Sands theme
-if test -f ~/.cache/wal/sequences
-    cat ~/.cache/wal/sequences
-end
-
 starship init fish | source
 
 # System Update (Pacman + AUR/Yay)
@@ -35,10 +30,5 @@ abbr -a scan 'nmap -sC -sV -T4 -oA nmap/initial'
 
 # zoxide
 zoxide init fish --cmd cd | source
-
-# fastfetch
-if status is-interactive
-	fastfetch
-end
 
 fish_add_path "$HOME/.local/bin"

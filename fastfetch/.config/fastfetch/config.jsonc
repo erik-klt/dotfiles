@@ -13,7 +13,7 @@
     "display": {
         "separator": "  ",
         "color": {
-            "keys": "magenta"
+            "keys": "green"
         }
     },
     "modules": [
@@ -23,30 +23,35 @@
             "type": "title",
             "format": "{user-name}@{host-name}",
             "color": {
-                "user": "red",
+                "user": "green",
                 "at": "white",
-                "host": "red"
+                "host": "yellow"
             }
         },
         {
             "type": "os",
             "key": "󰣇 ",
-            "keyColor": "blue"
+            "keyColor": "green"
         },
         {
             "type": "kernel",
             "key": "󰒋 ",
-            "keyColor": "cyan"
+            "keyColor": "magenta"
+        },
+        {
+            "type": "uptime",
+            "key": "󰅐 ",
+            "keyColor": "blue"
         },
         {
             "type": "packages",
             "key": "󰏖 ",
-            "keyColor": "yellow"
+            "keyColor": "cyan"
         },
         {
             "type": "wm",
             "key": "󱂬 ",
-            "keyColor": "magenta"
+            "keyColor": "yellow"
         },
         {
             "type": "terminal",
@@ -54,9 +59,24 @@
             "keyColor": "green"
         },
         {
+            "type": "cpu",
+            "key": " ",
+            "keyColor": "magenta"
+        },
+        {
             "type": "memory",
             "key": "󰍛 ",
             "keyColor": "blue"
+        },
+        {
+            "type": "disk",
+            "key": "󰋊 ",
+            "keyColor": "cyan"
+        },
+        {
+            "type": "battery",
+            "key": "󰁹 ",
+            "keyColor": "red"
         },
         "break",
         {

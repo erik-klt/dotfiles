@@ -13,7 +13,13 @@ configuration {
     sidebar-mode: true;
 }
 
-@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
+* {
+    bg:       #121212; 
+    bg-sel:   #1e2b22; 
+    fg:       #e0e0e0; 
+    accent:   #4a8c5b; 
+    font:     "Maple Mono 12";
+}
 
 window {
     width: 35%;
@@ -21,10 +27,10 @@ window {
     orientation: vertical;
     cursor: "default";
     spacing: 0px;
-    border: 2px;
-    border-color: @border-color;
+    border: 2px solid;
+    border-color: @accent;
     border-radius: 10px;
-    background-color: @background;
+    background-color: @bg;
 }
 
 mainbox {
@@ -39,9 +45,22 @@ mainbox {
 inputbar {
     padding: 10px;
     margin: 0px 0px 10px 0px;
-    background-color: @background;
-    text-color: @foreground;
+    background-color: transparent; 
     children: [ "prompt", "entry" ];
+}
+
+/* Make the "Apps" prompt pop using the accent color */
+prompt {
+    text-color: @accent;
+    font: "Maple Mono Bold 12";
+    padding: 0px 10px 0px 0px;
+}
+
+/* Make the text you type bright and readable */
+entry {
+    text-color: @fg;
+    placeholder: "Search...";
+    placeholder-color: #555555;
 }
 
 listview {
@@ -57,15 +76,28 @@ element {
     spacing: 10px;
     border-radius: 5px;
     background-color: transparent;
-    text-color: @foreground;
+    text-color: @fg;               
 }
 
-element selected {
-    background-color: @selected-active-background;
-    text-color: @background;
+/* Force normal and alternating rows to be transparent, killing the white boxes */
+element normal.normal,
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @bg-sel;
+    text-color: @accent;
+}
+
+/* Ensure the text and icons inherit the background so they don't draw white squares */
+element-text, element-icon {
+    background-color: inherit;
+    text-color: inherit;
+    vertical-align: 0.5;
 }
 
 element-icon {
     size: 24px;
 }
-

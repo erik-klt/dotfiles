@@ -15,38 +15,39 @@ $character"""
 symbol = ' '
 
 [directory]
-style = "bold #d4a373" 
-format = "[󱕅 $path ]($style)"
+style = "bold #7BA546" 
+format = "[$path ]($style)"
 truncation_length = 3
 fish_style_pwd_dir_length = 1
 
 [character]
-success_symbol = "[❯](bold #f4a261)"
+success_symbol = "[❯](bold #A1C85A)"
 
 [git_branch]
 symbol = " "
-style = "bold #bc6c25"
+style = "bold #467A4D"
 
 [git_status]
-style = "bold #dda15e"
+style = "bold #699663"
 
 [time]
 disabled = false
 time_format = "%H:%M"
-style = "dimmed #d4a373"
+style = "dimmed #2E5232"
 format = "[ $time]($style)"
 
 [python]
 symbol = " "
-style = "bold #f4a261"
+style = "bold #5B8464"
 format = '[$symbol$version ]($style)'
+detect_extensions = []
 
 [nodejs]
 symbol = " "
-style = "bold #d4a373"
+style = "bold #4A7A50"
 format = '[$symbol$version ]($style)'
 
 [lua]
 symbol = " "
-style = "bold #bc6c25"
+style = "bold #73A883"
 format = '[$symbol$version ]($style)'

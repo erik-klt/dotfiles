@@ -306,7 +306,9 @@ RowLayout {
         implicitWidth: 36
         implicitHeight: 22
         radius: 13
-        color: tapArch.pressed ? "#3b3b3b" : "#2b2b2b"
+        color: tapArch.pressed ? "#3b3b3b" : "#050505"
+        border.color: "#1C1C1C"   // Ultra-subtle charcoal border
+        border.width: 1
 
         Behavior on color { ColorAnimation { duration: 80 } }
 

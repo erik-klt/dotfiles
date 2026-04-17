@@ -3,27 +3,15 @@ import QtQuick
 import QtQuick.Layouts
 
 RowLayout {
-    spacing: 1
+    spacing: 2
+
+    SpotifyWidget {}
 
     // Audio / headphone volume
     AudioWidget {}
 
-    // Separator dot
-    Text {
-        text: "·"
-        color: "#444"
-        font.pixelSize: 14
-    }
-
     // WiFi network name
     NetworkWidget {}
-
-    // Separator dot
-    Text {
-        text: "·"
-        color: "#444"
-        font.pixelSize: 14
-    }
 
     // Battery
     BatteryWidget {}

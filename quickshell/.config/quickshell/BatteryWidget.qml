@@ -29,7 +29,9 @@ Item {
     Rectangle {
         anchors.fill: parent
         radius: 30
-        color: "#2b2b2b"
+        color: "#050505"
+        border.color: "#1C1C1C"   // Ultra-subtle charcoal border
+        border.width: 1          // Deep shadow matching the room
     }
 
     RowLayout {
@@ -39,13 +41,13 @@ Item {
 
         Text {
             text: root.state === 1 ? "󰂄" : (root.pct >= 15 ? "󰁹" : "󰂃")
-            color: root.state === 1 ? "#7ec8a4" : (root.pct <= 15 ? "#e05e00" : "#c0c0c0")
+            color: root.state === 1 ? "#A1C85A" : (root.pct <= 15 ? "#FF5B22" : "#D0DED4")
             font.family: "Symbols Nerd Font"
             font.pixelSize: 14
         }
         Text {
             text: root.pct + "%"
-            color: root.pct <= 15 ? "#e05e00" : "#c0c0c0"
+            color: root.pct <= 15 ? "#FF5B22" : "#D0DED4"
             font.family: "Maple Mono"
             font.pixelSize: 12
             font.weight: Font.Bold
@@ -63,7 +65,7 @@ Item {
         height: 110
         visible: false
         grabFocus: true
-        color: "transparent"   // ← was: transparent (no quotes = undefined = white corners)
+        color: "transparent"   
 
         anchor {
             item: root
@@ -72,8 +74,8 @@ Item {
 
         Rectangle {
             anchors.fill: parent
-            color: "#1e1e2e"
-            border.color: "#45475a"
+            color: "#0A0F0A"         // Matches the top pill
+            border.color: "#4A8C5B"  // Muted emerald green border
             border.width: 1
             radius: 8
 
@@ -83,22 +85,23 @@ Item {
 
                 Text {
                     text: root.state === 1 ? "󱐋 Charging" : "󰚥 Discharging"
-                    color: "#cdd6f4"
+                    color: root.state === 1 ? "#A1C85A" : "#D0DED4"
                     font.family: "Maple Mono"
+                    font.weight: Font.Bold
                 }
                 Text {
                     text: "Rate: " + root.rateStr
-                    color: "#a6adc8"
+                    color: "#69A87A" // Softer green
                     font.family: "Maple Mono"
                 }
                 Text {
                     text: "Health: " + root.healthStr
-                    color: "#94e2d5"
+                    color: "#467A4D" // Medium green
                     font.family: "Maple Mono"
                 }
                 Text {
                     text: "Target: " + (root.dev && root.dev.nativePath ? root.dev.nativePath : "Composite")
-                    color: "#6c7086"
+                    color: "#2E5232" // Dark, dimmed green
                     font.family: "Maple Mono"
                     font.pixelSize: 10
                 }

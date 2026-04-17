@@ -17,7 +17,9 @@ Item {
     Rectangle {
         anchors.fill: parent
         radius: 30
-        color: "#2b2b2b"
+        color: "#050505"
+        border.color: "#1C1C1C"   // Ultra-subtle charcoal border
+        border.width: 1
     }
 
     RowLayout {
