@@ -326,5 +326,4 @@ RowLayout {
 
 
     ClockWidget {}
-    NotificationBadge {}
 }

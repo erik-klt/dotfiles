@@ -1,4 +1,3 @@
-
 input {
     workspace-auto-back-and-forth
     keyboard {
@@ -16,15 +15,18 @@ input {
     }
 }
 
+workspace "chat"
+
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 spawn-at-startup "swayidle" "-w"
-spawn-at-startup "swaybg" "-i" "/Pictures/Wallpaper/forestreal.jpg" "-m" "fill"
-spawn-at-startup "swaybg" "-i" "/Pictures/Wallpaper/forestreal.jpg" "-m" "fill" "--namespace" "backdrop-wallpaper"
+spawn-at-startup "swaybg" "-i" "/home/erik/Pictures/Wallpapers/greenroom.jpg"
+spawn-at-startup "swaybg" "-i" "/home/erik/Pictures/Wallpapers/greenroom.jpg" "--namespace" "backdrop-wallpaper"
 spawn-at-startup "qs"
+spawn-at-startup "hypridle"
 
 environment {
   CLUTTER_BACKEND "wayland"
-  GDK_BACKEND "wayland,x11,*"
+  GDK_BACKEND "wayland,*"
   GDK_DPI_SCALE "1"
   GDK_SCALE "1"
   QT_AUTO_SCREEN_SCALE_FACTOR "1"
@@ -42,7 +44,7 @@ environment {
 }
 
 cursor {
-    xcursor-theme "Adwaita"
+    xcursor-theme "Bibata-Modern-Classic"
     xcursor-size 24
     hide-when-typing
     hide-after-inactive-ms 10000
@@ -105,7 +107,7 @@ window-rule {
   // Clips window contents to the rounded corner boundaries.
   clip-to-geometry true
 }
-
+	
 clipboard {
     disable-primary
 }
@@ -136,6 +138,22 @@ window-rule {
 window-rule {
     match app-id="firefox"
     open-maximized true
+}
+
+window-rule {
+    // Match Zoom's popups and annotation tools
+    match title="^zoom_linux_float_video_window$"
+    match title="^Annotation Tool$"
+    match app-id="^zoom$" title="^zoom$"
+    
+    open-floating true
+}
+
+window-rule {
+    match app-id="wasistlos"
+    open-maximized true
+    open-on-workspace "chat"
+    match at-startup=true
 }
 
 layer-rule {

@@ -40,3 +40,5 @@ zoxide init fish --cmd cd | source
 if status is-interactive
 	fastfetch
 end
+
+fish_add_path "$HOME/.local/bin"

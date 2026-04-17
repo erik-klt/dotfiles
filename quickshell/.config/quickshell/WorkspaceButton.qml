@@ -22,7 +22,7 @@ Item {
         height: 18
         radius: 9
 
-        color: parent.urgent ? "#e05e00" : (parent.active ? "#5b9bd5" : "#3a3a3a")
+        color: parent.urgent ? "#e05e00" : (parent.active ? "#a5b54a" : "#3a3a3a")
 
         Behavior on color {
             ColorAnimation { duration: 120 }
