@@ -1,9 +1,9 @@
-// WorkspaceSwitcher.qml - Pill with workspace buttons (niri-qml)
 import QtQuick
 import QtQuick.Layouts
 import Niri 0.1
 
 Item {
+    id: root
     implicitWidth: row.implicitWidth + 16
     implicitHeight: 22
 
@@ -15,15 +15,16 @@ Item {
     // Outer pill background
     Rectangle {
         anchors.fill: parent
-        radius: 13
-        color: "#050505"
-        border.color: "#1C1C1C"   // Ultra-subtle charcoal border
+        radius: 11 // Adjusted slightly for a tighter mathematical wrap around the 18px inner buttons
+        // Deep slate background (#1F232A) at 80% opacity
+        color: "#CC1F232A"
+        border.color: "#4C566A"  // color8: Dark Grey for a subtle outline
         border.width: 1
 
         RowLayout {
             id: row
             anchors.centerIn: parent
-            spacing: 2
+            spacing: 4 // Bumped spacing from 2 to 4 to give the expanding pills a bit more breathing room
 
             Repeater {
                 model: niri.workspaces

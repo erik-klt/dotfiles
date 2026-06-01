@@ -1,7 +1,7 @@
-// WorkspaceButton.qml - Single workspace slot inside the pill (niri-qml)
 import QtQuick
 
 Item {
+    id: root
     implicitWidth: active ? 28 : 18
     implicitHeight: 20
 
@@ -22,7 +22,8 @@ Item {
         height: 18
         radius: 9
 
-        color: parent.urgent ? "#e05e00" : (parent.active ? "#a5b54a" : "#3a3a3a")
+        // Urgent: Cream White (#E5E9F0) | Active: Crimson/Salmon (#FF6B7A) | Inactive: Dark Grey (#4C566A)
+        color: root.urgent ? "#E5E9F0" : (root.active ? "#FF6B7A" : "#4C566A")
 
         Behavior on color {
             ColorAnimation { duration: 120 }
@@ -30,17 +31,20 @@ Item {
 
         Text {
             anchors.centerIn: parent
-            // show 1-based number when active, dot otherwise
-            text: parent.parent.active ? (parent.parent.wsIndex).toString() : " " 
-            color: (parent.parent.active || parent.parent.urgent) ? "white" : "#888888"
-            font.pixelSize: parent.parent.active ? 12 : 10
-            font.weight: parent.parent.active ? Font.SemiBold : Font.Normal
+            // Show the number if active OR urgent so you know where the alert is coming from
+            text: (root.active || root.urgent) ? root.wsIndex.toString() : "" 
+            
+            // Invert the text color on the bright backgrounds for maximum readability
+            color: (root.active || root.urgent) ? "#1A1D24" : "#E5E9F0"
+            font.pixelSize: root.active ? 12 : 10
+            font.family: "Maple Mono"
+            font.weight: root.active ? Font.Bold : Font.Normal
         }
     }
 
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
-        onClicked: parent.activated()
+        onClicked: root.activated()
     }
 }

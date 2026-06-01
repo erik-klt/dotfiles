@@ -17,11 +17,13 @@ Item {
     readonly property int volumePct: sink?.audio ? Math.round(sink.audio.volume * 100) : 0
     readonly property bool muted: sink?.audio ? sink.audio.muted : false
 
+    // Main Widget Pill
     Rectangle {
         anchors.fill: parent
         radius: 30
-        color: "#050505"
-        border.color: "#1C1C1C"   // Ultra-subtle charcoal border
+        // Deep slate background at 80% opacity
+        color: "#CC1F232A"
+        border.color: "#4C566A"  // color8: Dark Grey outline
         border.width: 1
     }
 
@@ -32,14 +34,15 @@ Item {
 
         Text {
             text: root.muted ? "󰟎" : "󰋋"
-            color: root.muted ? "#585b70" : "#cdd6f4"
+            // Muted: Crimson (#FF6B7A) | Active: Cream White (#E5E9F0)
+            color: root.muted ? "#FF6B7A" : "#E5E9F0"
             font.pixelSize: 14
             font.family: "Symbols Nerd Font"
         }
 
         Text {
             text: root.muted ? "muted" : (root.volumePct + "%")
-            color: root.muted ? "#585b70" : "#cdd6f4"
+            color: root.muted ? "#FF6B7A" : "#E5E9F0"
             font.pixelSize: 12
             font.family: "Maple Mono"
             font.weight: Font.Bold
@@ -60,6 +63,7 @@ Item {
         onTapped: audioPopup.visible = !audioPopup.visible
     }
 
+    // Popup Detail Window
     PopupWindow {
         id: audioPopup
         width: popupContent.implicitWidth
@@ -71,14 +75,16 @@ Item {
         anchor {
             item: root
             edges: Edges.Bottom
+            gravity: Edges.Bottom
         }
 
         Rectangle {
             id: popupContent
             implicitWidth: 200
             implicitHeight: 60
-            color: "#1e1e2e"
-            border.color: "#45475a"
+            // Darker slate for the popup at 80% opacity
+            color: "#CC1A1D24"
+            border.color: "#5E81AC" // Slate-blue (color6) border to differentiate from battery
             border.width: 1
             radius: 8
 
@@ -92,12 +98,14 @@ Item {
                     width: 28
                     height: 28
                     radius: 6
-                    color: root.muted ? "#f38ba8" : "#313244"
+                    // Crimson background when muted, Dark Grey when active
+                    color: root.muted ? "#FF6B7A" : "#4C566A"
 
                     Text {
                         anchors.centerIn: parent
                         text: root.muted ? "󰝟" : "󰕾"
-                        color: root.muted ? "#11111b" : "#cdd6f4"
+                        // Invert icon color when muted for contrast
+                        color: root.muted ? "#1F232A" : "#E5E9F0"
                         font.family: "Symbols Nerd Font"
                         font.pixelSize: 14
                     }
@@ -134,12 +142,12 @@ Item {
                         width: volSlider.availableWidth
                         height: implicitHeight
                         radius: 3
-                        color: "#313244"
+                        color: "#1A1D24" // Darkest grey for the slider track
 
                         Rectangle {
                             width: volSlider.visualPosition * parent.width
                             height: parent.height
-                            color: "#b4befe"
+                            color: "#88C0D0" // Ice blue for the active volume level
                             radius: 3
                         }
                     }
@@ -150,8 +158,9 @@ Item {
                         implicitWidth: 14
                         implicitHeight: 14
                         radius: 7
-                        color: volSlider.pressed ? "#cdd6f4" : "#b4befe"
-                        border.color: "#1e1e2e"
+                        // Cream white when pressed, otherwise Ice Blue
+                        color: volSlider.pressed ? "#E5E9F0" : "#88C0D0"
+                        border.color: "#1F232A"
                         border.width: 1
                     }
                 }

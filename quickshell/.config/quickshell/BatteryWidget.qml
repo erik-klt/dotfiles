@@ -8,6 +8,7 @@ Item {
     implicitWidth: layout.implicitWidth + 20
     implicitHeight: layout.implicitHeight + 7
 
+    // Logic remains unchanged - fetching the primary battery device
     readonly property var dev: {
         if (UPower.devices && UPower.devices.values) {
             let devs = UPower.devices.values
@@ -26,12 +27,14 @@ Item {
     readonly property string rateStr: dev ? Math.abs(dev.changeRate).toFixed(2) + " W" : "N/A"
     readonly property string healthStr: (dev && dev.healthSupported) ? Math.round(dev.healthPercentage) + "%" : "Unknown"
 
+    // Main Widget Pill
     Rectangle {
         anchors.fill: parent
         radius: 30
-        color: "#050505"
-        border.color: "#1C1C1C"   // Ultra-subtle charcoal border
-        border.width: 1          // Deep shadow matching the room
+        // #CC1F232A is 80% opacity (CC) applied to the deep slate background (#1F232A)
+        color: "#CC1F232A" 
+        border.color: "#4C566A"  // color8: Dark Grey for a subtle outline
+        border.width: 1          
     }
 
     RowLayout {
@@ -41,13 +44,14 @@ Item {
 
         Text {
             text: root.state === 1 ? "󰂄" : (root.pct >= 15 ? "󰁹" : "󰂃")
-            color: root.state === 1 ? "#A1C85A" : (root.pct <= 15 ? "#FF5B22" : "#D0DED4")
+            // Charging: Classic Green (#4AF626) | Low: Crimson (#FF6B7A) | Normal: Cream White (#E5E9F0)
+            color: root.state === 1 ? "#4AF626" : (root.pct <= 15 ? "#FF6B7A" : "#E5E9F0")
             font.family: "Symbols Nerd Font"
             font.pixelSize: 14
         }
         Text {
             text: root.pct + "%"
-            color: root.pct <= 15 ? "#FF5B22" : "#D0DED4"
+            color: root.pct <= 15 ? "#FF6B7A" : "#E5E9F0"
             font.family: "Maple Mono"
             font.pixelSize: 12
             font.weight: Font.Bold
@@ -59,6 +63,7 @@ Item {
         onClicked: infoPopup.visible = !infoPopup.visible
     }
 
+    // Popup Detail Window
     PopupWindow {
         id: infoPopup
         width: 180
@@ -70,12 +75,14 @@ Item {
         anchor {
             item: root
             edges: Edges.Bottom
-        }
+            gravity: Edges.Bottom 
+       }
 
         Rectangle {
             anchors.fill: parent
-            color: "#0A0F0A"         // Matches the top pill
-            border.color: "#4A8C5B"  // Muted emerald green border
+            // Slightly darker slate background for the popup (#1A1D24) at 80% opacity
+            color: "#CC1A1D24"         
+            border.color: "#FF6B7A"  // The salmon/crimson accent pops nicely as a border here
             border.width: 1
             radius: 8
 
@@ -85,23 +92,23 @@ Item {
 
                 Text {
                     text: root.state === 1 ? "󱐋 Charging" : "󰚥 Discharging"
-                    color: root.state === 1 ? "#A1C85A" : "#D0DED4"
+                    color: root.state === 1 ? "#4AF626" : "#E5E9F0"
                     font.family: "Maple Mono"
                     font.weight: Font.Bold
                 }
                 Text {
                     text: "Rate: " + root.rateStr
-                    color: "#69A87A" // Softer green
+                    color: "#88C0D0" // Ice blue (color4) for neutral data output
                     font.family: "Maple Mono"
                 }
                 Text {
                     text: "Health: " + root.healthStr
-                    color: "#467A4D" // Medium green
+                    color: "#A3BE8C" // Muted green (color12) for health status
                     font.family: "Maple Mono"
                 }
                 Text {
                     text: "Target: " + (root.dev && root.dev.nativePath ? root.dev.nativePath : "Composite")
-                    color: "#2E5232" // Dark, dimmed green
+                    color: "#5E81AC" // Muted slate-blue (color6) for secondary metadata
                     font.family: "Maple Mono"
                     font.pixelSize: 10
                 }

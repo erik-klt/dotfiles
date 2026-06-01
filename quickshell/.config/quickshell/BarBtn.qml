@@ -11,19 +11,23 @@ AbstractButton {
 
     contentItem: Text {
         text:                  btn.text
-        font.family:           "Symbols Nerd Font, Nerd Font, sans-serif"
-        font.pixelSize:        13
-        color:                 !btn.enabled   ? "#555555"
-                             : btn.pressed    ? "#ffffff"
-                             : btn.hovered    ? "#dddddd"
-                             :                  "#aaaaaa"
+        font.family:           "Symbols Nerd Font"
+        font.pixelSize:        14 // Bumped to 14 to match the rest of the bar's icons
+        
+        // Disabled: Dark Grey | Pressed: Crimson Accent | Hovered: Cream White | Default: Standard White
+        color:                 !btn.enabled   ? "#4C566A"
+                             : btn.pressed    ? "#FF6B7A"
+                             : btn.hovered    ? "#E5E9F0"
+                             :                  "#D8DEE9"
+                             
         horizontalAlignment:   Text.AlignHCenter
         verticalAlignment:     Text.AlignVCenter
         Behavior on color { ColorAnimation { duration: 80 } }
     }
 
     background: Rectangle {
-        color:  btn.pressed ? "#22ffffff" : btn.hovered ? "#11ffffff" : "transparent"
+        // Pressed: Base Black/Grey | Hovered: Dark Grey | Default: Transparent
+        color:  btn.pressed ? "#1A1D24" : btn.hovered ? "#4C566A" : "transparent"
         radius: 4
         Behavior on color { ColorAnimation { duration: 80 } }
     }

@@ -34,11 +34,13 @@ Item {
 
     readonly property string ssid: wifiNet ? wifiNet.name : "No WiFi"
 
+    // Main Widget Pill
     Rectangle {
         anchors.fill: parent
         radius: 30
-        color: "#050505"
-        border.color: "#1C1C1C"   // Ultra-subtle charcoal border
+        // Deep slate background (#1F232A) at 80% opacity
+        color: "#CC1F232A"
+        border.color: "#4C566A"  // color8: Dark Grey outline
         border.width: 1
     }
 
@@ -57,14 +59,15 @@ Item {
                 else if (s >= 0.2) return "󰤟";
                 else return "󰤯";
             }
-            color: root.wifiNet ? "#cdd6f4" : "#585b70"
+            // Connected: Cream White (#E5E9F0) | Disconnected: Crimson (#FF6B7A)
+            color: root.wifiNet ? "#E5E9F0" : "#FF6B7A"
             font.pixelSize: 14
             font.family: "Symbols Nerd Font"
         }
 
         Text {
             text: root.ssid
-            color: root.wifiNet ? "#cdd6f4" : "#585b70"
+            color: root.wifiNet ? "#E5E9F0" : "#FF6B7A"
             font.pixelSize: 12
             font.family: "Maple Mono"
             font.weight: Font.Bold
@@ -78,6 +81,7 @@ Item {
         onTapped: wifiPopup.visible = !wifiPopup.visible
     }
 
+    // Popup Detail Window
     PopupWindow {
         id: wifiPopup
         width: 220
@@ -89,12 +93,14 @@ Item {
         anchor {
             item: root
             edges: Edges.Bottom
+            gravity: Edges.Bottom
         }
 
         Rectangle {
             anchors.fill: parent
-            color: "#1e1e2e"
-            border.color: "#45475a"
+            // Darker slate for the popup (#1A1D24) at 80% opacity
+            color: "#CC1A1D24"
+            border.color: "#88C0D0" // Ice Blue to uniquely identify the network popup
             border.width: 1
             radius: 8
 
@@ -108,20 +114,26 @@ Item {
 
                     Text {
                         text: "Wi-Fi"
-                        color: "#cdd6f4"
+                        color: "#E5E9F0"
                         font.family: "Maple Mono"
                         font.pixelSize: 14
                         font.bold: true
                         Layout.fillWidth: true
                     }
 
+                    // Toggle Switch
                     Rectangle {
                         width: 40; height: 24; radius: 12
-                        color: !root.isWifiEnabled ? "#a6e3a1" : "#45475a"
+                        // Green when enabled, Dark Grey when disabled
+                        color: root.isWifiEnabled ? "#4AF626" : "#4C566A"
+                        
+                        Behavior on color { ColorAnimation { duration: 150 } }
 
                         Rectangle {
-                            width: 18; height: 18; radius: 9; color: "#1e1e2e"; y: 3
-                            x: !root.isWifiEnabled ? parent.width - width - 3 : 3
+                            width: 18; height: 18; radius: 9; 
+                            color: "#1A1D24"; y: 3
+                            // Corrected logic: Knob goes right when enabled, left when disabled
+                            x: root.isWifiEnabled ? parent.width - width - 3 : 3
                             Behavior on x { NumberAnimation { duration: 150 } }
                         }
 
@@ -137,12 +149,14 @@ Item {
                     }
                 }
 
+                // Divider Line
                 Rectangle {
                     Layout.fillWidth: true
                     height: 1
-                    color: "#313244"
+                    color: "#4C566A" // Dark Grey
                 }
 
+                // Network List
                 ScrollView {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
@@ -159,7 +173,8 @@ Item {
                                 Layout.fillWidth: true
                                 height: modelData.name !== "" ? 32 : 0
                                 visible: modelData.name !== ""
-                                color: netTap.pressed ? "#313244" : "transparent"
+                                // Subtle highlight on press
+                                color: netTap.pressed ? "#1F232A" : "transparent"
                                 radius: 4
 
                                 RowLayout {
@@ -169,7 +184,8 @@ Item {
 
                                     Text {
                                         text: modelData.name
-                                        color: modelData.connected ? "#a6e3a1" : "#cdd6f4"
+                                        // Terminal Green for connected network, White for others
+                                        color: modelData.connected ? "#4AF626" : "#E5E9F0"
                                         font.family: "Maple Mono"
                                         font.pixelSize: 12
                                         Layout.fillWidth: true
@@ -178,7 +194,8 @@ Item {
 
                                     Text {
                                         text: modelData.connected ? "󰄬" : "󰤨"
-                                        color: modelData.connected ? "#a6e3a1" : "#a6adc8"
+                                        // Green checkmark for connected, Muted Slate-Blue for available networks
+                                        color: modelData.connected ? "#4AF626" : "#5E81AC"
                                         font.family: "Symbols Nerd Font"
                                         font.pixelSize: 14
                                     }

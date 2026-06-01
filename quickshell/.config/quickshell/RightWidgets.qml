@@ -7,6 +7,8 @@ RowLayout {
 
     SpotifyWidget {}
 
+    property var notifServer
+
     // Audio / headphone volume
     AudioWidget {}
 
@@ -14,14 +16,5 @@ RowLayout {
     NetworkWidget {}
 
     // Battery
-    BatteryWidget {}
-
-    /*
-    BarIcon {
-        iconText: "󰂚"   // bell nerd font
-        onClicked: {
-            // toggle notification center
-        }
-    }
-    */
+    BatteryWidget {}     
 }

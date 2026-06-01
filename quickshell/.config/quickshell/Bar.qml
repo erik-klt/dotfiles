@@ -3,9 +3,12 @@ import Quickshell
 import Quickshell.Wayland
 import QtQuick
 import QtQuick.Layouts
+import Quickshell.Services.Notifications
 
 PanelWindow {
     id: root
+
+    property var notifServer
 
     // Anchor to top of screen
     anchors {
@@ -38,6 +41,7 @@ PanelWindow {
         RightWidgets {
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
+            notifServer: root.notifServer
         }
     }
 }

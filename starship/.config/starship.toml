@@ -15,39 +15,43 @@ $character"""
 symbol = ' '
 
 [directory]
-style = "bold #7BA546" 
+# The path now pops in bold fsociety red
+style = "bold #FF6B7A" 
 format = "[$path ]($style)"
 truncation_length = 3
 fish_style_pwd_dir_length = 1
 
 [character]
-success_symbol = "[❯](bold #A1C85A)"
+# Changed the prompt arrow to match the creamy off-white for a cleaner entry look
+success_symbol = "[❯](bold #E5E9F0)"
 
 [git_branch]
+# Uses the cool ice-blue cyan to provide visual variety away from the red
+style = "bold #88C0D0"
 symbol = " "
-style = "bold #467A4D"
 
 [git_status]
-style = "bold #699663"
+# Uses a darker crimson to keep status markers clear without being overwhelming
+style = "bold #C35562"
 
 [time]
 disabled = false
 time_format = "%H:%M"
-style = "dimmed #2E5232"
+style = "dimmed #4C566A"
 format = "[ $time]($style)"
 
 [python]
 symbol = " "
-style = "bold #5B8464"
+style = "bold #E2D5C3"
 format = '[$symbol$version ]($style)'
 detect_extensions = []
 
 [nodejs]
 symbol = " "
-style = "bold #4A7A50"
+style = "bold #E2D5C3"
 format = '[$symbol$version ]($style)'
 
 [lua]
 symbol = " "
-style = "bold #73A883"
+style = "bold #E2D5C3"
 format = '[$symbol$version ]($style)'

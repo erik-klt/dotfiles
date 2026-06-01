@@ -1,4 +1,3 @@
-// SpotifyWidget.qml
 import Quickshell
 import Quickshell.Services.Mpris
 import QtQuick
@@ -38,11 +37,13 @@ Item {
     opacity: active ? 1 : 0
     Behavior on opacity { NumberAnimation { duration: 150 } }
 
+    // Main Widget Pill
     Rectangle {
         anchors.fill: parent
         radius: 30
-        color: "#050505"
-        border.color: "#1C1C1C"
+        // Deep slate background (#1F232A) at 80% opacity
+        color: "#CC1F232A"
+        border.color: "#4C566A" // color8: Dark Grey outline
         border.width: 1
     }
 
@@ -54,6 +55,10 @@ Item {
         anchors.leftMargin: 6
         anchors.rightMargin: 8
         spacing: 0
+
+        // Note: If BarBtn is the BarIcon.qml component we updated earlier, 
+        // you can optionally pass `iconColor: root.isPlaying ? "#4AF626" : "#E5E9F0"` 
+        // to the Play/Pause button to make it light up Terminal Green when playing!
 
         BarBtn {
             text: "󰒮"
@@ -73,10 +78,11 @@ Item {
             onClicked: root.spotify?.next()
         }
 
+        // Inner Divider
         Rectangle {
             width: 1
             height: 14
-            color: "#44ffffff"
+            color: "#4C566A" // Matched to the dark grey border color
             Layout.leftMargin:  4
             Layout.rightMargin: 4
         }
@@ -95,19 +101,23 @@ Item {
 
                 Text {
                     text: root.title
-                    color: "#ffffff"
+                    color: "#E5E9F0" // Crisp cream-white
                     font.pixelSize: 12
+                    font.family: "Maple Mono"
+                    font.weight: Font.Bold
                 }
                 Text {
                     text: "·"
-                    color: "#888888"
+                    color: "#5E81AC" // Muted Slate-Blue for the separator
                     font.pixelSize: 12
+                    font.family: "Maple Mono"
                     visible: root.title !== "" && root.artist !== ""
                 }
                 Text {
                     text: root.artist
-                    color: "#aaaaaa"
+                    color: "#88C0D0" // High-contrast Ice Blue for the artist name
                     font.pixelSize: 12
+                    font.family: "Maple Mono"
                 }
             }
 
@@ -137,14 +147,15 @@ Item {
                 NumberAnimation { target: textRow; property: "x"; to: 0; duration: 0 }
             }
 
-            // Right-edge fade — match to your bar background colour
+            // Right-edge fade — flawlessly matches the translucent bar background
             Rectangle {
                 anchors { top: parent.top; bottom: parent.bottom; right: parent.right }
                 width: 24
                 gradient: Gradient {
                     orientation: Gradient.Horizontal
                     GradientStop { position: 0.0; color: "transparent" }
-                    GradientStop { position: 1.0; color: "#ff050505" }
+                    // Replaced solid black with our 80% opacity Deep Slate to hide scrolling text properly
+                    GradientStop { position: 1.0; color: "#CC1F232A" } 
                 }
             }
         }

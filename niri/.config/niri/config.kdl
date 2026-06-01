@@ -1,9 +1,5 @@
 input {
     workspace-auto-back-and-forth
-    keyboard {
-        repeat-delay 200
-        repeat-rate 25
-    }
 
     touchpad {
         tap
@@ -15,14 +11,13 @@ input {
     }
 }
 
-workspace "chat"
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-spawn-at-startup "swayidle" "-w"
-spawn-at-startup "swaybg" "-i" "/home/erik/Pictures/Wallpapers/greenroom.jpg"
-spawn-at-startup "swaybg" "-i" "/home/erik/Pictures/Wallpapers/greenroom.jpg" "--namespace" "backdrop-wallpaper"
+
+spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock -f" "timeout" "600" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors" "before-sleep" "swaylock -f"
+spawn-at-startup "swaybg" "-i" "/home/erik/Pictures/Wallpapers/redR.jpeg"
+spawn-at-startup "swaybg" "-i" "/home/erik/Pictures/Wallpapers/redR.jpeg" "--namespace" "backdrop-wallpaper"
 spawn-at-startup "qs"
-spawn-at-startup "hypridle"
 
 environment {
   CLUTTER_BACKEND "wayland"
@@ -137,8 +132,15 @@ window-rule {
 
 window-rule {
     match app-id="spotify"
+    match app-id="webstorm"
     match app-id="firefox"
     open-maximized true
+}
+
+window-rule {
+    match app-id="helium"
+    open-maximized true
+    default-column-width { proportion 1.0; }
 }
 
 window-rule {
@@ -149,7 +151,7 @@ window-rule {
     
     open-floating true
 }
-
+ 
 window-rule {
     match app-id="wasistlos"
     open-maximized true
@@ -165,8 +167,8 @@ layer-rule {
 
 binds {
     Mod+Return { spawn "kitty"; }
-    Mod+R {spawn "firefox"; }
-    Mod+L {spawn "hyprlock";}
+    Mod+R {spawn "helium-browser"; }
+    Mod+L {spawn "swaylock"; }
 
     Mod+O repeat=false { toggle-overview; }
     Mod+C repeat=false { close-window; }
