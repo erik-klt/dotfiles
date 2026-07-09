@@ -2,6 +2,7 @@ import Quickshell
 import Quickshell.Services.Mpris
 import QtQuick
 import QtQuick.Layouts
+import Qt5Compat.GraphicalEffects
 
 Item {
     id: root
@@ -27,7 +28,7 @@ Item {
     readonly property string title:     spotify?.trackTitle       ?? ""
     readonly property string artist:    spotify?.trackAlbumArtist ?? ""
 
-    implicitWidth:  active ? row.implicitWidth : 0
+    implicitWidth:  active ? row.implicitWidth + 22 : 0
     implicitHeight: 28
     clip: true
 
@@ -41,9 +42,8 @@ Item {
     Rectangle {
         anchors.fill: parent
         radius: 30
-        // Deep slate background (#1F232A) at 80% opacity
         color: "#CC1F232A"
-        border.color: "#4C566A" // color8: Dark Grey outline
+        border.color: "#4C566A"
         border.width: 1
     }
 
@@ -51,14 +51,8 @@ Item {
         id: row
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: parent.left
-        anchors.right: parent.right
         anchors.leftMargin: 6
-        anchors.rightMargin: 8
         spacing: 0
-
-        // Note: If BarBtn is the BarIcon.qml component we updated earlier, 
-        // you can optionally pass `iconColor: root.isPlaying ? "#4AF626" : "#E5E9F0"` 
-        // to the Play/Pause button to make it light up Terminal Green when playing!
 
         BarBtn {
             text: "󰒮"
@@ -82,16 +76,34 @@ Item {
         Rectangle {
             width: 1
             height: 14
-            color: "#4C566A" // Matched to the dark grey border color
+            color: "#4C566A"
             Layout.leftMargin:  4
             Layout.rightMargin: 4
         }
 
         // ── Scrolling label ────────────────────────────────────────────────────
         Item {
-            implicitWidth: 160
+            id: scrollArea
+            // FIX 2: Explicit width fixes the layout calculation loop 
+            Layout.preferredWidth: 160 
             implicitHeight: 28
             clip: true
+
+            layer.enabled: true
+            layer.effect: OpacityMask {
+                maskSource: LinearGradient {
+                    width: scrollArea.width
+                    height: scrollArea.height
+                    start: Qt.point(0, 0)
+                    end: Qt.point(scrollArea.width, 0)
+                    gradient: Gradient {
+                        GradientStop { position: 0.0; color: "black" }
+                        // FIX 3: Pushed to 0.90 so the text fades closer to the right edge
+                        GradientStop { position: 0.90; color: "black" } 
+                        GradientStop { position: 1.0; color: "transparent" }
+                    }
+                }
+            }
 
             Row {
                 id: textRow
@@ -101,27 +113,26 @@ Item {
 
                 Text {
                     text: root.title
-                    color: "#E5E9F0" // Crisp cream-white
+                    color: "#E5E9F0"
                     font.pixelSize: 12
                     font.family: "Maple Mono"
                     font.weight: Font.Bold
                 }
                 Text {
                     text: "·"
-                    color: "#5E81AC" // Muted Slate-Blue for the separator
+                    color: "#5E81AC"
                     font.pixelSize: 12
                     font.family: "Maple Mono"
                     visible: root.title !== "" && root.artist !== ""
                 }
                 Text {
                     text: root.artist
-                    color: "#88C0D0" // High-contrast Ice Blue for the artist name
+                    color: "#88C0D0"
                     font.pixelSize: 12
                     font.family: "Maple Mono"
                 }
             }
 
-            // Reset position and restart whenever the track title changes
             Connections {
                 target: root
                 function onTitleChanged() {
@@ -132,31 +143,19 @@ Item {
 
             SequentialAnimation {
                 id: scrollAnim
-                running: textRow.implicitWidth > 160 && root.active
+                running: textRow.implicitWidth > scrollArea.width && root.active
                 loops: Animation.Infinite
 
                 PauseAnimation { duration: 2000 }
                 NumberAnimation {
                     target:      textRow
                     property:    "x"
-                    to:          -(textRow.implicitWidth - 160)
-                    duration:    Math.max(0, textRow.implicitWidth - 160) * 30
+                    to:          -(textRow.implicitWidth - scrollArea.width)
+                    duration:    Math.max(0, textRow.implicitWidth - scrollArea.width) * 30
                     easing.type: Easing.InOutSine
                 }
                 PauseAnimation { duration: 1500 }
                 NumberAnimation { target: textRow; property: "x"; to: 0; duration: 0 }
-            }
-
-            // Right-edge fade — flawlessly matches the translucent bar background
-            Rectangle {
-                anchors { top: parent.top; bottom: parent.bottom; right: parent.right }
-                width: 24
-                gradient: Gradient {
-                    orientation: Gradient.Horizontal
-                    GradientStop { position: 0.0; color: "transparent" }
-                    // Replaced solid black with our 80% opacity Deep Slate to hide scrolling text properly
-                    GradientStop { position: 1.0; color: "#CC1F232A" } 
-                }
             }
         }
     }

@@ -5,7 +5,8 @@ import Niri 0.1
 Item {
     id: root
     implicitWidth: row.implicitWidth + 16
-    implicitHeight: 22
+    // Bumped height from 22 to 26 to give the inner buttons vertical breathing room
+    implicitHeight: 26 
 
     Niri {
         id: niri
@@ -15,7 +16,8 @@ Item {
     // Outer pill background
     Rectangle {
         anchors.fill: parent
-        radius: 11 // Adjusted slightly for a tighter mathematical wrap around the 18px inner buttons
+        // Adjusted radius to 13 (exactly half of 26) for perfectly round edges
+        radius: 13 
         // Deep slate background (#1F232A) at 80% opacity
         color: "#CC1F232A"
         border.color: "#4C566A"  // color8: Dark Grey for a subtle outline
@@ -24,7 +26,7 @@ Item {
         RowLayout {
             id: row
             anchors.centerIn: parent
-            spacing: 4 // Bumped spacing from 2 to 4 to give the expanding pills a bit more breathing room
+            spacing: 4 
 
             Repeater {
                 model: niri.workspaces
